@@ -1,0 +1,13 @@
+@{
+  ViewData["Title"] = $"Details for {Model.CommonName}";
+}
+<h1>@Model.CommonName</h1>
+<p><em>@Model.Genus @Model.Species</em></p>
+<img height="400px" src="@Model.ImageURL" alt="mushroom photo">
+<p>Gills: @Model.GillType</p>
+<p>Toxicity Level: @Model.ToxicityLevel</p>
+<p>Notes: @Model.Notes</p>
+<p><em>Editor: @Model.Editor</em></e></p>
+
+
+@Html.ActionLink("back to mushroom list", "Index")

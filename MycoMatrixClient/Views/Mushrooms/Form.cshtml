@@ -1,0 +1,65 @@
+@model MushroomViewModel
+@{
+  string buttonText = "Add";
+  if(Model.Edit)
+  {
+    buttonText = "Save";
+  }
+}
+
+@using (Html.BeginForm())
+{
+  @if(Model.Edit)
+  {
+    @Html.HiddenFor(m => m.MushroomId)
+  }
+  <div>
+    @Html.LabelFor(m => m.CommonName)
+    <br />
+    @Html.TextBoxFor(m => m.CommonName)
+    <br />
+  </div>
+  <div>
+    @Html.LabelFor(m => m.Genus)
+    <br />
+    @Html.TextBoxFor(m => m.Genus)
+    <br />
+  </div>
+  <div>
+    @Html.LabelFor(m => m.Species)
+    <br />
+    @Html.TextBoxFor(m => m.Species)
+    <br />
+  </div>
+    <div>
+    @Html.LabelFor(m => m.GillType)
+    <br />
+    <select asp-for="@Model.GillType" asp-items="@Model.Gills"></select>
+    <br />
+  </div>
+  <div>
+    @Html.LabelFor(m => m.ImageURL)
+    <br />
+    @Html.TextBoxFor(m => m.ImageURL)
+    <br />
+  </div>
+  <div>
+    @Html.LabelFor(m => m.ToxicityLevel)
+    <br />
+    <input type="range" asp-for="@Model.ToxicityLevel" min="0" max="10" />
+    <br />
+  </div>
+    <div>
+    @Html.LabelFor(m => m.Notes)
+    <br />
+    @Html.TextAreaFor(m => m.Notes)
+    <br />
+  </div>
+  <div>
+    @Html.LabelFor(m => m.Editor)
+    <br />
+    @Html.TextAreaFor(m => m.Editor)
+    <br />
+  </div>
+  <input type="submit" value=@buttonText />
+}
