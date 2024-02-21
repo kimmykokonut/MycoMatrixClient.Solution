@@ -35,4 +35,11 @@ public class ApiHelper
     request.AddJsonBody(newMush);
     await client.PutAsync(request);
   }
+  public static async void Delete(int id)
+  {
+    RestClient client = new("http://localhost:5000/");
+    RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Delete);
+    request.AddHeader("Content-Type", "application/json");
+    await client.DeleteAsync(request);
+  }
 }

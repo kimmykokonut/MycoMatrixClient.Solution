@@ -45,4 +45,15 @@ public class MushroomsController : Controller
     Mushroom.Put(model.ToMushroom());
     return RedirectToAction("Index");
   }
+  public ActionResult Delete(int id)
+  {
+    Mushroom mushroom = Mushroom.GetDetails(id);
+    return View(mushroom);
+  }
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Mushroom.Delete(id);
+    return RedirectToAction("Index");
+  }
 }

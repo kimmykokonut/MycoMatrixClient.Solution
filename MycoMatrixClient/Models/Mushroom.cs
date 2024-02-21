@@ -79,4 +79,8 @@ public class Mushroom
     string jsonMushroom = JsonConvert.SerializeObject(mushroom);
     ApiHelper.Put(mushroom.MushroomId, jsonMushroom);
   }
+  public static void Delete(int id)
+  {
+    ApiHelper.Delete(id);
+  }
 }
