@@ -2,6 +2,6 @@
 
 @foreach(Mushroom m in Model)
 {
-  <p>@m.CommonName | <a href="/Mushrooms/Details/@(m.MushroomId)">View deets</a></p>
+  <p>@m.CommonName | <a href="/Mushrooms/Details/@(m.MushroomId)">deets</a></p>
 }
 <p>@Html.ActionLink("Add a new mushroom to the inventory", "Create")</p>

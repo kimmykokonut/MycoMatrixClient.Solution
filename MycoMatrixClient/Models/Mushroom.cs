@@ -74,4 +74,9 @@ public class Mushroom
     string jsonMushroom = JsonConvert.SerializeObject(mushroom);
     ApiHelper.Post(jsonMushroom);
   }
+  public static void Put(Mushroom mushroom)
+  {
+    string jsonMushroom = JsonConvert.SerializeObject(mushroom);
+    ApiHelper.Put(mushroom.MushroomId, jsonMushroom);
+  }
 }

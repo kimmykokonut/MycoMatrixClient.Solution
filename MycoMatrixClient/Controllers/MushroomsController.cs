@@ -22,13 +22,27 @@ public class MushroomsController : Controller
     return View("Form", new MushroomViewModel());
   }
   [HttpPost]
-  public ActionResult Create(MushroomViewModel mushroom)
+  public ActionResult Create(MushroomViewModel model)
   {
     if(!ModelState.IsValid)
     {
-      return View("Form", mushroom);
+      return View("Form", model);
     }
-    Mushroom.Post(mushroom.ToMushroom());
+    Mushroom.Post(model.ToMushroom());
+    return RedirectToAction("Index");
+  }
+  public ActionResult Edit(int id)
+  {
+    return View("Form", new MushroomViewModel(Mushroom.GetDetails(id)));
+  }
+
+  [HttpPost]
+  public ActionResult Edit(MushroomViewModel model)
+  {
+    if(!ModelState.IsValid) {
+      return View("Form", model);
+    }
+    Mushroom.Put(model.ToMushroom());
     return RedirectToAction("Index");
   }
 }

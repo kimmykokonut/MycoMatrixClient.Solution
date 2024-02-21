@@ -6,6 +6,26 @@ namespace MycoMatrixClient.ViewModels;
 
 public class MushroomViewModel
 {
+
+  public MushroomViewModel()
+  {
+
+  }
+
+  public MushroomViewModel(Mushroom m)
+  {
+    MushroomId = m.MushroomId;
+    CommonName = m.CommonName;
+    Genus = m.Genus;
+    Species = m.Species;
+    GillType = m.GillType;
+    ImageURL = m.ImageURL;
+    ToxicityLevel = m.ToxicityLevel;
+    Notes = m.Notes;
+    Editor = m.Editor;
+    Edit = true;
+  }
+
   public int MushroomId { get; set; }
 
   [Required]
@@ -36,9 +56,13 @@ public class MushroomViewModel
   public bool Edit { get; set; } = false;
   public SelectList Gills { get; } = Mushroom.GillList();
 
+
+
+
   public Mushroom ToMushroom()
     {
       return new Mushroom() {
+        MushroomId = MushroomId,
         CommonName = CommonName,
         Genus = Genus,
         Species = Species,
@@ -49,4 +73,5 @@ public class MushroomViewModel
         Editor = Editor
       };
     }
+  
 }
