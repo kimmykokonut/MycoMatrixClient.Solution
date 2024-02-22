@@ -1,18 +1,24 @@
 # Communicating with an API
-### by Henry O. & Kim R.
+### by Henry Oberholtzer & Kim Robinson
+
+![screenshot of app](./MycoMatrixClient/wwwroot/img/screenshot.png)
 
 ## Prompt
 * API-Consuming Application
- Build an application that interacts with an API (using ![myco-matrix-api](https://github.com/kimmykokonut/myco-matrix)). Your goal is twofold: continue improving the API itself and make an application for users to interact with!
+ Build an application that interacts with an API (using ![myco-matrix-api](https://github.com/kimmykokonut/myco-matrix)). 
 
- A user can make these API calls:
- - see the list of mushrooms (GetAll)
- - see an individual mushroom's details (Get by id)
- - create a mushroom object (Post)
- - edit an individual mushroom (Put)
- - delete an individual mushroom (Delete)
+A user can:
+- register an account with the API
+- sign in to receive a JWT token to make API calls
+ - see the list of mushrooms (GetAll) api call
+ - see an individual mushroom's details (Get by id) api call
+ - create a mushroom object (Post) api call
+ - edit an individual mushroom (Put) api call
+ - delete an individual mushroom (Delete) api call
 
  21 feb 2024
- full CRUD for UI to interact with API.
+ full CRUD for UI to interact with API without authorization
+ 22 feb 2024
+ full CRUD for authenticated user
 
- ### issues: had to remove authorization, JWT token and editor check in controller.  without those in place, CRUD achieved.
+ ### issues: had to remove editor check in controller, have not built out user to be associated as editor to only be able to edit/delete their own objects.  

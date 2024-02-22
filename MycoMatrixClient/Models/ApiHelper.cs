@@ -3,6 +3,7 @@ using RestSharp;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace MycoMatrixClient.Models;
 
@@ -31,8 +32,13 @@ public class ApiHelper
     RestClient client = new("http://localhost:5000/");
     RestRequest request = new($"api/v1/Mushrooms/?pageSize=30", Method.Get);
     AddAuthorizationHeader(request);
-    // IRestResponse response = await client.ExecuteAsync(request);
     RestResponse response = await client.GetAsync(request);
+
+    if (response.StatusCode == HttpStatusCode.Unauthorized) //if 401
+    {
+      throw new UnauthorizedAccessException("Your session has expired, please log in again");
+    }
+
     return response.Content;
   }
   public static async Task<string> Get(int id)
@@ -41,6 +47,12 @@ public class ApiHelper
     RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Get);
     AddAuthorizationHeader(request); //add auth...
     RestResponse response = await client.GetAsync(request);
+
+    if (response.StatusCode == HttpStatusCode.Unauthorized) //if 401
+    {
+      throw new UnauthorizedAccessException("Your session has expired, please log in again");
+    }
+
     return response.Content;
   }
   public static async void Post(string newMush)
@@ -50,7 +62,12 @@ public class ApiHelper
     AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
     request.AddBody(newMush);
-    await client.PostAsync(request);
+    RestResponse response = await client.PostAsync(request);
+
+    if (response.StatusCode == HttpStatusCode.Unauthorized) //if 401
+    {
+      throw new UnauthorizedAccessException("Your session has expired, please log in again");
+    }
   }
   public static async void Put(int id, string newMush)
   {
@@ -59,7 +76,12 @@ public class ApiHelper
     AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newMush);
-    await client.PutAsync(request);
+    RestResponse response = await client.PutAsync(request);
+
+    if (response.StatusCode == HttpStatusCode.Unauthorized) //if 401
+    {
+      throw new UnauthorizedAccessException("Your session has expired, please log in again");
+    }
   }
   public static async void Delete(int id)
   {
@@ -67,7 +89,12 @@ public class ApiHelper
     RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Delete);
     AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
-    await client.DeleteAsync(request);
+    RestResponse response = await client.DeleteAsync(request);
+
+    if (response.StatusCode == HttpStatusCode.Unauthorized) //if 401
+    {
+      throw new UnauthorizedAccessException("Your session has expired, please log in again");
+    }
   }
 
   public static async Task Register(string newUser)
