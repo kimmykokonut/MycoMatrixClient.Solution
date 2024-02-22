@@ -56,6 +56,7 @@ public class ApiHelper
   {
     RestClient client = new("http://localhost:5000/");
     RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Put);
+    AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(newMush);
     await client.PutAsync(request);
@@ -64,6 +65,7 @@ public class ApiHelper
   {
     RestClient client = new("http://localhost:5000/");
     RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Delete);
+    AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
     await client.DeleteAsync(request);
   }
