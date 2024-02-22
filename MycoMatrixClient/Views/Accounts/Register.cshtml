@@ -1,0 +1,16 @@
+@model MycoMatrixClient.Models.ApplicationUser;
+
+<h2>Register Here</h2>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(user => user.UserName)
+  @Html.TextBoxFor(user => user.UserName)
+  <br />
+  @Html.LabelFor(user => user.Email)
+  @Html.TextBoxFor(user => user.Email)
+  <br />
+  @Html.LabelFor(user => user.Password)
+  @Html.PasswordFor(user => user.Password)
+  <br />
+  <input type="submit" value="register" />
+}

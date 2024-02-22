@@ -1,0 +1,19 @@
+@model MycoMatrixClient.Models.ApplicationUser;
+
+<h2>Sign in to see the magic</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.ValidationSummary();
+
+  @Html.LabelFor(user => user.Email)
+  @Html.TextBoxFor(user => user.Email)
+  <br />
+  @Html.ValidationMessageFor(user => user.Email)
+
+  @Html.LabelFor(user => user.Password)
+  @Html.PasswordFor(user => user.Password)
+  <br />
+  @Html.ValidationMessageFor(user => user.Password)
+  <input type="submit" value="sign in" />
+}
