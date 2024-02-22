@@ -12,7 +12,7 @@
   @Html.ValidationMessageFor(user => user.Email)
 
   @Html.LabelFor(user => user.Password)
-  @Html.EditorFor(user => user.Password)
+  @Html.PasswordFor(user => user.Password)
   <br />
   @Html.ValidationMessageFor(user => user.Password)
   <input type="submit" value="sign in" />

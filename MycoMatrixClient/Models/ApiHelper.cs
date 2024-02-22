@@ -39,6 +39,7 @@ public class ApiHelper
   {
     RestClient client = new("http://localhost:5000/");
     RestRequest request = new($"api/v1/Mushrooms/{id}", Method.Get);
+    AddAuthorizationHeader(request); //add auth...
     RestResponse response = await client.GetAsync(request);
     return response.Content;
   }
@@ -46,6 +47,7 @@ public class ApiHelper
   {
     RestClient client = new("http://localhost:5000/");
     RestRequest request = new($"api/v1/Mushrooms/", Method.Post);
+    AddAuthorizationHeader(request);
     request.AddHeader("Content-Type", "application/json");
     request.AddBody(newMush);
     await client.PostAsync(request);
@@ -81,7 +83,7 @@ public class ApiHelper
     RestRequest request = new($"Accounts/SignIn", Method.Post);
     request.AddHeader("Content-Type", "application/json");
     request.AddJsonBody(credentials);
-    
+
     RestResponse response = await client.PostAsync(request);
 
     if (response.IsSuccessful)
