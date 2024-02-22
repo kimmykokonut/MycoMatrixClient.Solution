@@ -20,11 +20,10 @@ public class ApplicationUser
   [EmailAddress]
   public string Email { get; set; }
 
-  public async static void SignIn(ApplicationUser user)
+  public static async Task SignIn(ApplicationUser user)
   {
     string jsonAccount = JsonConvert.SerializeObject(user);
     await ApiHelper.SignIn(jsonAccount);
-      
   }
 
   public static void Register(ApplicationUser user)

@@ -80,7 +80,8 @@ public class ApiHelper
     RestClient client = new("http://localhost:5000");
     RestRequest request = new($"Accounts/SignIn", Method.Post);
     request.AddHeader("Content-Type", "application/json");
-    request.AddBody(credentials);
+    request.AddJsonBody(credentials);
+    
     RestResponse response = await client.PostAsync(request);
 
     if (response.IsSuccessful)

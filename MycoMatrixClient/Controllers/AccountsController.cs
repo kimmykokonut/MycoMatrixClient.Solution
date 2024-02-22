@@ -7,9 +7,27 @@ namespace MycoMatrixClient.Controllers;
 public class AccountsController : Controller
 {
   [HttpGet]
-  public IActionResult SignIn(ApplicationUser user)
+  public IActionResult SignIn()
   {
     return View();
+  }
+  [HttpPost]
+  public async Task<IActionResult> SignIn(ApplicationUser user)
+  {
+    if (ModelState.IsValid)
+    {
+      try
+      { 
+        await ApplicationUser.SignIn(user);
+        return RedirectToAction("Index", "Mushrooms", new { area = "Api" });
+      }
+      catch (Exception ex)
+      {
+        ModelState.AddModelError(string.Empty, "Sign in failure");
+        return View(user);
+      }
+    }
+    return View(user);
   }
 
   public IActionResult Register()
